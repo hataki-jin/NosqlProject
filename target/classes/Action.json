@@ -1,0 +1,68 @@
+{
+  "actions": [
+    {
+      "name": "SHOW_USER",
+      "feature_retrieve": {
+        "counters": [
+          {
+            "counterName": "showUserNum"
+          }
+        ]
+      }
+    },
+    {
+      "name": "INCR_USER",
+      "feature_retrieve": {
+        "counters": [
+          {
+            "counterName": "showUserNum"
+          }
+        ]
+      },
+      "save_counter": {
+        "counters": [
+          {
+            "counterName": "incrUser"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DECR_USER",
+      "feature_retrieve": {
+        "counters": [
+          {
+            "counterName": "showUserNum"
+          }
+        ]
+      },
+      "save_counter": {
+        "counters": [
+          {
+            "counterName": "decrUser"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SHOW_USER_IN_FREQ",
+      "feature_retrieve": {
+        "counters": [
+          {
+            "counterName": "showUserInFreq"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SHOW_USER_OUT_FREQ",
+      "feature_retrieve": {
+        "counters": [
+          {
+            "counterName": "showUserOutFreq"
+          }
+        ]
+      }
+    }
+  ]
+}
