@@ -7,7 +7,6 @@ public class ChooseCounter {
 
     public static void choose(Counter counter) {
         switch (EmCounterType.valueOf(counter.getName())) {
-
             case showUserNum:
                 showUser(counter);
                 break;
@@ -40,7 +39,7 @@ public class ChooseCounter {
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         } finally {
-            redisUtil.ruturnJedisResource();
+            redisUtil.returnJedisResource();
         }
     }
 
@@ -52,7 +51,7 @@ public class ChooseCounter {
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         } finally {
-            redisUtil.ruturnJedisResource();
+            redisUtil.returnJedisResource();
         }
 
     }
@@ -71,7 +70,7 @@ public class ChooseCounter {
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
         } finally {
-            redisUtil.ruturnJedisResource();
+            redisUtil.returnJedisResource();
         }
     }
 
@@ -92,7 +91,7 @@ public class ChooseCounter {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            redisUtil.ruturnJedisResource();
+            redisUtil.returnJedisResource();
         }
     }
 
@@ -113,7 +112,7 @@ public class ChooseCounter {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            redisUtil.ruturnJedisResource();
+            redisUtil.returnJedisResource();
         }
     }
 }

@@ -19,7 +19,7 @@ public class RedisUtil {
         jedis = jedisPool.getResource();
     }
 
-    public void ruturnJedisResource(){
+    public void returnJedisResource(){
         jedis.close();
     }
     public void incr(String key, int num) {
