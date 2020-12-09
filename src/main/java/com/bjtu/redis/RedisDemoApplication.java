@@ -14,9 +14,7 @@ import java.util.*;
  * EnableAutoConfiguration 借助@Import的帮助，将所有符合自动配置条件的bean定义加载到IoC容器
  * ComponentScan 自动扫描并加载符合条件的组件
  */
-enum EmCounterType {
-    showUserNum, incrUser, decrUser, showUserInFreq, showUserOutFreq
-}
+
 
 @SpringBootApplication
 public class RedisDemoApplication {
