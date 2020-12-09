@@ -22,6 +22,7 @@ public class RedisUtil {
     public void returnJedisResource(){
         jedis.close();
     }
+
     public void incr(String key, int num) {
         for (int i = 0; i < num; ++i) {
             jedis.incr(key);
