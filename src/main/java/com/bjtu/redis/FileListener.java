@@ -23,12 +23,12 @@ public class FileListener extends FileAlterationListenerAdaptor {
 
     @Override
     public void onFileCreate(File file) {
-        logger.info("有新文件生成：" + file.getName());
+        logger.info("New file,file name：" + file.getName());
     }
 
     @Override
     public void onFileChange(File file) {
-        logger.info("有文件被修改：" + file.getName());
+        logger.info("Some files have been changed：" + file.getName());
         System.out.println("Some files have been modified:" + file.getName());
         System.out.println("Reloading configuration file...");
         if (file.getName().equals("Counter.json") ) {
@@ -41,7 +41,7 @@ public class FileListener extends FileAlterationListenerAdaptor {
 
     @Override
     public void onFileDelete(File file) {
-        logger.info("有文件被删除：" + file.getName());
+        logger.info("Delete file, file name：" + file.getName());
     }
 
     @Override

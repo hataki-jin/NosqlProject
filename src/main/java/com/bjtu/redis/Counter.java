@@ -37,14 +37,8 @@ public class Counter {
         type=obj.getString("type");
         value=0;
 
-        if(obj.containsKey("valueFields"))
-        {
-            value=obj.getInteger("valueFields");
-        }
-        if(obj.containsKey("FreqFields"))
-        {
-            Freq=obj.getString("FreqFields");
-        }
+        if(obj.containsKey("valueFields")) { value=obj.getInteger("valueFields"); }
+        if(obj.containsKey("FreqFields")) { Freq=obj.getString("FreqFields"); }
     }
 
     @Override
