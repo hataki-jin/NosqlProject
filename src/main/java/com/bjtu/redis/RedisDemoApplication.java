@@ -14,42 +14,38 @@ import java.util.*;
  * EnableAutoConfiguration 借助@Import的帮助，将所有符合自动配置条件的bean定义加载到IoC容器
  * ComponentScan 自动扫描并加载符合条件的组件
  */
-
-
 @SpringBootApplication
 public class RedisDemoApplication {
     public static HashMap<String, Counter> counters;
     public static HashMap<String, Action> actions;
-    public static List<String> actionNames;
+    public static List<String> actionList;
 
     public static void main(String[] args) {
         counters = new HashMap<>();
         actions = new HashMap<>();
-        actionNames = new ArrayList<>();
+        actionList = new ArrayList<>();
+
         readCounterConfig();
         readActionConfig();
         FileMonitor fileMonitor = new FileMonitor();
         fileMonitor.initFileMonitor("Counter.json");
 
-        boolean canRun = true;
-        while (canRun) {
-            System.out.println("Please enter the number of operation you choose:");
-            System.out.println("1 show Actions");
-            System.out.println("2 show Counters");
-            System.out.println("3 do Actions");
-            System.out.println("0 exit");
+        boolean b = true;
+        while (b) {
+            welcome();
+
             Scanner option = new Scanner(System.in);
             int x = option.nextInt();
+
             int size = 0;
             switch (x) {
-
                 case 0:
-                    canRun = false;
+                    b = false;
                     break;
                 case 1:
-                    size = actionNames.size();
+                    size = actionList.size();
                     for (int i = 0; i < size; ++i) {
-                        System.out.println(i + " " + actionNames.get(i));
+                        System.out.println(i + " " + actionList.get(i));
                     }
                     break;
                 case 2:
@@ -61,16 +57,16 @@ public class RedisDemoApplication {
                     break;
                 case 3:
                     while (true) {
-                        System.out.println("Please enter the number of action you choose:");
-                        size = actionNames.size();
+                        System.out.println("Choose your option:");
+                        size = actionList.size();
                         for (int i = 0; i < size; ++i) {
-                            System.out.println(i + " " + actionNames.get(i));
+                            System.out.println(i + " " + actionList.get(i));
                         }
                         System.out.println(size + " exit");
                         x = option.nextInt();
                         if (x == size) break;
 
-                        workAction(actions.get(actionNames.get(x)));
+                        chooseAction(actions.get(actionList.get(x)));
                     }
 
             }
@@ -78,16 +74,21 @@ public class RedisDemoApplication {
         }
     }
 
+    public static void welcome(){
+        System.out.println("Choose your option:");
+        System.out.println("1 | Show Actions");
+        System.out.println("2 | Show Counters");
+        System.out.println("3 | Do Actions");
+        System.out.println("0 | Exit");
+    }
     public static void readCounterConfig() {
         String path = RedisDemoApplication.class.getClassLoader().getResource("Counter.json").getPath();
         String countersString = ReadUtil.readJsonFile(path);
-        JSONObject counterss = JSONObject.parseObject(countersString);
-        JSONArray array = counterss.getJSONArray("counters");
+        JSONArray array = JSONObject.parseObject(countersString).getJSONArray("counters");
         for (Object obj : array) {
             Counter c = new Counter((JSONObject) obj);
             counters.put(c.getName(), c);
         }
-        // System.out.println(counters.get("incrUser"));
     }
 
     public static void readActionConfig() {
@@ -97,11 +98,11 @@ public class RedisDemoApplication {
         for (Object obj : array) {
             Action a = new Action((JSONObject) obj);
             actions.put(a.getName(), a);
-            actionNames.add(a.getName());
+            actionList.add(a.getName());
         }
     }
 
-    public static void workAction(Action action) {
+    public static void chooseAction(Action action) {
         ArrayList<String> retrieve = action.getRetrieve();
         for (String s : retrieve) {
             Counter c = counters.get(s);
@@ -129,7 +130,7 @@ public class RedisDemoApplication {
 完成后，通知所有SpringApplicationRunListener执行contextPrepared()、contextLoaded()
 
 4、执行 ApplicationContext 的 refresh，完成程序启动
-完成后，遍历执行 CommanadLineRunner、通知SpringApplicationRunListener 执行 finished()
+完成后，遍历执行 CommandLineRunner、通知SpringApplicationRunListener 执行 finished()
 
 参考：
 https://blog.csdn.net/zxzzxzzxz123/article/details/69941910
