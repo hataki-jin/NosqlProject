@@ -12,13 +12,13 @@ public class ReadUtil {
 
             Reader reader = new InputStreamReader(new FileInputStream(jsonFile), StandardCharsets.UTF_8);
             int ch = 0;
-            StringBuilder sb = new StringBuilder();
+            StringBuilder str = new StringBuilder();
             while ((ch = reader.read()) != -1) {
-                sb.append((char) ch);
+                str.append((char) ch);
             }
             fileReader.close();
             reader.close();
-            jsonStr = sb.toString();
+            jsonStr = str.toString();
             return jsonStr;
         } catch (IOException e) {
             e.printStackTrace();
