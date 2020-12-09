@@ -7,28 +7,12 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @author <a href="mailto:Tastill@**.cn">Tastill</a>
- * @version 2019/1/24 15:00
- * @description FileMonitorTest
- */
 @Component
 public class FileMonitor {
-    /**
-     * @param
-     * @return
-     * @description
-     * @version 2.0, 2019/1/25 9:44
-     * @author <a href="mailto:Tastill@**.cn">Tastill</a>
-     */
     @PostConstruct
     public void initFileMonitor(String fileName) {
         // 监控目录
         String rootDir =FileMonitor.class.getClassLoader().getResource("").getPath();
-      //  String rootDir = Objects.requireNonNull(FileMonitor.class.getClassLoader().get).getPath();;
-        // 轮询间隔 5 秒
-
-        //System.out.println("------"+new File(String.valueOf(rootDir)).getAbsolutePath());
         Integer time = 1;
         long interval = TimeUnit.SECONDS.toMillis(time);
         FileAlterationObserver observer = new FileAlterationObserver(rootDir);

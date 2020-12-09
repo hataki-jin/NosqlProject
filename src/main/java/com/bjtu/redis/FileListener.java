@@ -7,18 +7,13 @@ import java.io.File;
 
 import org.apache.log4j.Logger;
 
-/**
- * @author <a href="Tastill@**.cn">Tastill</a>
- * @version 2019/1/24 14:55
- * @description FileListener
- */
 public class FileListener extends FileAlterationListenerAdaptor {
     public static final Logger logger = Logger.getLogger(FileListener.class);
     @Override
     public void onStart(FileAlterationObserver observer) {
 
         super.onStart(observer);
-       // System.out.println("Monitor has started!");
+        System.out.println("Monitor has started!");
     }
 
     @Override
@@ -46,7 +41,7 @@ public class FileListener extends FileAlterationListenerAdaptor {
 
     @Override
     public void onStop(FileAlterationObserver observer) {
-        //System.out.println("监听停止");
+        System.out.println("监听停止");
         super.onStop(observer);
     }
 }
