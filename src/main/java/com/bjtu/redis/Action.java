@@ -41,7 +41,7 @@ public class Action {
     @Override
     public String toString() {
         return "Action{" +
-                "name='" + name + '\'' +
+                "name=" + name +
                 ", retrieve=" + retrieve +
                 ", save=" + save +
                 "}";

@@ -1,6 +1,7 @@
 package com.bjtu.redis;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class ChooseCounter {
@@ -37,7 +38,7 @@ public class ChooseCounter {
             String string=time.format(date);
             redisUtil.lpush(list,string);
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            System.out.println(Arrays.toString(e.getStackTrace()));
         } finally {
             redisUtil.returnJedisResource();
         }
@@ -47,9 +48,9 @@ public class ChooseCounter {
         String key = c.getKey().get(0);
         RedisUtil redisUtil = new RedisUtil();
         try {
-            System.out.println("The value of " + key + " is " + redisUtil.get(key));
+            System.out.println("key:" + key + ", value:" + redisUtil.get(key));
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            System.out.println(Arrays.toString(e.getStackTrace()));
         } finally {
             redisUtil.returnJedisResource();
         }
@@ -62,13 +63,13 @@ public class ChooseCounter {
         RedisUtil redisUtil = new RedisUtil();
         try {
             redisUtil.incr(key, incr.getValue());
-            System.out.println("The value of " + key + " increased by " + incr.getValue() + " and became " + redisUtil.get(key));
+            System.out.println("key" + key + ", increased by " + incr.getValue() + ", new value: " + redisUtil.get(key));
             SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmm");
             Date date = new Date();
             String string=time.format(date);
             redisUtil.lpush(list,string);
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            System.out.println(Arrays.toString(e.getStackTrace()));
         } finally {
             redisUtil.returnJedisResource();
         }
@@ -78,14 +79,14 @@ public class ChooseCounter {
         String keyField=counter.getKey().get(0);
         RedisUtil redisUtil=new RedisUtil();
         try{
-            String date=counter.getFREQ();
-            String startTime=date.substring(0,12);
-            String endTime=date.substring(13,25);
+            String date = counter.getFREQ();
+            String startTime = date.substring(0,12);
+            String endTime = date.substring(13,25);
             for (int i = 0; i < redisUtil.llen(keyField); i++) {
-                String t=redisUtil.lindex(keyField,i);
-                if(t.compareTo(startTime)>=0 && t.compareTo(endTime)<=0){
-                    //可以输出此用户元素
-                    System.out.println("有用户在"+t+"时刻进入");
+                String t = redisUtil.lindex(keyField,i);
+                if(t.compareTo(startTime) >= 0 && t.compareTo(endTime) <= 0){
+                    //记录用户操作
+                    System.out.println("用户登入,时间:["+t+"]");
                 }
             }
         } catch (Exception e) {
@@ -103,14 +104,13 @@ public class ChooseCounter {
             String startTime=date.substring(0,12);
             String endTime=date.substring(13,25);
             for (int i = 0; i < redisUtil.llen(keyField); i++) {
-//            System.out.println(jedis.lindex("UserOutList",i));
                 if(redisUtil.lindex(keyField,i).compareTo(startTime)>=0 && redisUtil.lindex(keyField,i).compareTo(endTime)<=0){
-                    //可以输出此用户元素
-                    System.out.println("有用户在"+redisUtil.lindex(keyField,i)+"时刻退出");
+                    //记录用户操作
+                    System.out.println("用户退出,时间:["+redisUtil.lindex(keyField,i)+"]");
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(Arrays.toString(e.getStackTrace()));
         } finally {
             redisUtil.returnJedisResource();
         }

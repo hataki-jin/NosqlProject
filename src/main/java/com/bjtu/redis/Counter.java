@@ -44,12 +44,12 @@ public class Counter {
     @Override
     public String toString() {
         return "Counter{" +
-                "name='" + name + '\'' +
-                ", index='" + index + '\'' +
-                ", key='" + key + '\'' +
-                ", type='" + type + '\'' +
+                "name=" + name +
+                ", index=" + index +
+                ", key=" + key +
+                ", type=" + type +
                 ", value=" + value +
-                ", Freq='" + Freq + '\'' +
+                ", Freq=" + Freq +
                 "}";
     }
 }
