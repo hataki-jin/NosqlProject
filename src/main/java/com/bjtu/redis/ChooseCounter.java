@@ -39,6 +39,8 @@ public class ChooseCounter {
             redisUtil.lpush(list,string);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
+        } finally {
+            redisUtil.ruturnJedisResource();
         }
     }
 
@@ -49,6 +51,8 @@ public class ChooseCounter {
             System.out.println("The value of " + key + " is " + redisUtil.get(key));
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
+        } finally {
+            redisUtil.ruturnJedisResource();
         }
 
     }
@@ -66,6 +70,8 @@ public class ChooseCounter {
             redisUtil.lpush(list,string);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
+        } finally {
+            redisUtil.ruturnJedisResource();
         }
     }
 
@@ -85,12 +91,14 @@ public class ChooseCounter {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            redisUtil.ruturnJedisResource();
         }
     }
 
     public static void showUserOutFreq(Counter counter){
         String keyField=counter.getKey().get(0);
-        RedisUtil redisUtil=new RedisUtil();
+        RedisUtil redisUtil = new RedisUtil();
         try{
             String date=counter.getFREQ();
             String startTime=date.substring(0,12);
@@ -104,6 +112,8 @@ public class ChooseCounter {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            redisUtil.ruturnJedisResource();
         }
     }
 }
