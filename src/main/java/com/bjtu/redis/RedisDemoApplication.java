@@ -53,10 +53,10 @@ public class RedisDemoApplication {
                     }
                     break;
                 case 2:
-                    int cntt = 0;
+                    int count = 0;
                     for (Map.Entry<String, Counter> entry : counters.entrySet()) {
-                        System.out.println(cntt + " " + entry.getKey());
-                        cntt++;
+                        System.out.println(count + " " + entry.getKey());
+                        count++;
                     }
                     break;
                 case 3:
@@ -93,8 +93,7 @@ public class RedisDemoApplication {
     public static void readActionConfig() {
         String path = RedisDemoApplication.class.getClassLoader().getResource("Action.json").getPath();
         String actionsString = ReadUtil.readJsonFile(path);
-        JSONObject actionss = JSONObject.parseObject(actionsString);
-        JSONArray array = actionss.getJSONArray("actions");
+        JSONArray array = JSONObject.parseObject(actionsString).getJSONArray("actions");
         for (Object obj : array) {
             Action a = new Action((JSONObject) obj);
             actions.put(a.getName(), a);
