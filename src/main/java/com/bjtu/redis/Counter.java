@@ -56,6 +56,6 @@ public class Counter {
                 ", type='" + type + '\'' +
                 ", value=" + value +
                 ", Freq='" + Freq + '\'' +
-                '}';
+                "}";
     }
 }

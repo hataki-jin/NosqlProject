@@ -44,6 +44,6 @@ public class Action {
                 "name='" + name + '\'' +
                 ", retrieve=" + retrieve +
                 ", save=" + save +
-                '}';
+                "}";
     }
 }
